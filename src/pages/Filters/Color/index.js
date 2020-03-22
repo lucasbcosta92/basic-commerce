@@ -38,22 +38,6 @@ export default function Filters({ match }) {
     document.getElementById('post-1').checked = false;
   }
 
-  /* filtro de preço
-  // Menor para maior
-  console.tron.log(
-    products.sort(
-      (a, b) => replacePrice(a.actual_price) - replacePrice(b.actual_price)
-    )
-  );
-
-  // MAior para Menor
-  console.tron.log(
-    products.sort(
-      (a, b) => replacePrice(b.actual_price) - replacePrice(a.actual_price)
-    )
-  );
-  */
-
   return (
     <>
       <Header>
