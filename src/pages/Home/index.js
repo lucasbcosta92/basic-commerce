@@ -9,12 +9,9 @@ export default function Home() {
   const [products, setProducts] = useState([]);
   const [ordenationColor, setOrdenationColor] = useState([]);
 
-  // Buscando produtos na api
   useEffect(() => {
     async function loadProducts() {
       const response = await api.get('products');
-      // buscando o preço dos produtos pra não ser necessário renderizá-los em todos os produtos varias vezes
-      // isso implica em perca de performance
       const data = response.data.map(product => ({
         ...product,
         color: product.color,
@@ -30,29 +27,6 @@ export default function Home() {
 
     loadProducts();
   }, []);
-
-  /* filtro de preço
-  // Menor para maior
-  console.tron.log(
-    products.sort(
-      (a, b) => replacePrice(a.actual_price) - replacePrice(b.actual_price)
-    )
-  );
-
-  // MAior para Menor
-  console.tron.log(
-    products.sort(
-      (a, b) => replacePrice(b.actual_price) - replacePrice(a.actual_price)
-    )
-  );
-
-  // ordenação em ordem alfabética
-  const orderColor = data.sort((a, b) =>
-        a.color.localeCompare(b.color, undefined, {
-          caseFirst: 'upper',
-        })
-      );
-  */
 
   return (
     <>

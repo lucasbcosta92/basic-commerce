@@ -17,7 +17,7 @@ Basta rodar o comando abaixo e uma nova aba com a aplicação irá abrir no seu 
 
 ```yarn start```
 
-Para iniciar a API da aplicação e carregar os produtos digite em uma nova aba do terminal:
+Para iniciar a API da aplicação e carregar os produtos digite o comando abaixo em uma nova aba do terminal:
 
 ```json-server server.json -p 3333```
 

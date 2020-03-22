@@ -1,10 +1,8 @@
 import produce from 'immer';
 
-// adicionando produto ao carrinho
 export default function cart(state = [], action) {
   switch (action.type) {
     case '@cart/ADD_SUCCESS':
-      // draft já é a cópia do estado
       return produce(state, draft => {
         const { product } = action;
         draft.push(product);

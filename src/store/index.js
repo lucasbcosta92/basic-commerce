@@ -17,7 +17,7 @@ const sagaMiddleware = createSagaMiddleware({
 // Conectando com o Reactotron
 const enhancer =
   process.env.NODE_ENV === 'development'
-    ? compose(console.tron.createEnhancer(), applyMiddleware(sagaMiddleware)) // compose - somente em ambiente de desenv
+    ? compose(console.tron.createEnhancer(), applyMiddleware(sagaMiddleware))
     : applyMiddleware(sagaMiddleware);
 
 const persistConfig = {

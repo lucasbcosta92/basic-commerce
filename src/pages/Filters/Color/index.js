@@ -12,7 +12,6 @@ export default function Filters({ match }) {
   const [colorName, setColorName] = useState([]);
   const [ordenationColor, setOrdenationColor] = useState([]);
 
-  // Buscando produtos na api
   useEffect(() => {
     async function loadProducts() {
       const filterColor = decodeURIComponent(match.params.filter);

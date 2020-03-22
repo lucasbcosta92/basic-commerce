@@ -13,7 +13,6 @@ import { Container, ProductTable, Total } from './styles';
 import indisponivel from '../../assets/images/imagemindisponivel.png';
 
 export default function Cart() {
-  // pegando algumas informações do estado e mapeando elas com formato de propriedades no componente
   const total = useSelector(state =>
     formatPrice(
       state.cart.reduce((totalSum, product) => {

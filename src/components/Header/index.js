@@ -13,8 +13,8 @@ export default function Header() {
       document.querySelector('input').value = '';
     }
   }
-  // acessando os dados de um reducer em um componente que não tem ligação direta com o mesmo
-  const cartSize = useSelector(state => state.cart.length); // nome do reducer - pegando a quantidade de itens no cart
+
+  const cartSize = useSelector(state => state.cart.length);
   return (
     <Container>
       <div className="top-bar">

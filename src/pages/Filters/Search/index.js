@@ -9,7 +9,6 @@ export default function Search({ match }) {
   const [products, setProducts] = useState([]);
   const [searchProducts, setSearchProducts] = useState([]);
 
-  // Buscando produtos na api
   useEffect(() => {
     async function loadProducts() {
       const searching = decodeURIComponent(match.params.search);

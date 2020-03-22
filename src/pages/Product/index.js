@@ -16,13 +16,10 @@ export default function Products({ match }) {
 
   const dispatch = useDispatch();
 
-  // Carregando as informações do produto
   useEffect(() => {
     async function loadProduct() {
-      // pegando o código do produto passado como parametro na URL e decodificando
       const productCode = decodeURIComponent(match.params.product);
 
-      // Buscando o produto na API
       const response = await api.get(`/products`);
 
       const data = response.data.find(prod => prod.code_color === productCode);
@@ -65,8 +62,7 @@ export default function Products({ match }) {
         <ProductDetails>
           <div>
             <h2>Price</h2>
-            {// condição de preços
-            product.actual_price !== product.regular_price ? (
+            {product.actual_price !== product.regular_price ? (
               <>
                 <div className="price">
                   <span className="regular_price">{product.regular_price}</span>
@@ -84,8 +80,7 @@ export default function Products({ match }) {
             <div className="sizes">
               <h2>Size</h2>
               <ul>
-                {// mapeamento de tamanhos
-                productSize.map(sizeP => (
+                {productSize.map(sizeP => (
                   <li key={sizeP.sku}>
                     {sizeP.available === true ? (
                       <button

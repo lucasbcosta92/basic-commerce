@@ -3,7 +3,6 @@ import api from '../../../service/api';
 import history from '../../../service/history';
 import { addToCartSuccess, updateAmountSuccess } from './actions';
 
-// * - é basicamente um async - yield - é o await
 function* addToCart({ id, skuID }) {
   // VERIFICANDO SE O PRODUTO ADICIONADO JÁ NÃO EXISTE NO CARRINHO
   const productExists = yield select(state =>
@@ -13,7 +12,6 @@ function* addToCart({ id, skuID }) {
   const currentAmount = productExists ? productExists.amount : 0;
   const amount = currentAmount + 1;
 
-  // se o produto já existir no carrinho, só adiciona +1
   if (productExists) {
     const findSizes = yield select(state =>
       state.cart.find(p => p.sizes.sku === skuID)
@@ -22,12 +20,8 @@ function* addToCart({ id, skuID }) {
     if (findSizes) {
       yield put(updateAmountSuccess(skuID, amount));
       history.push('/cart');
-    }
-    //
-    else {
-      // CHAMANDO A API PARA PEGAR OS DADOS DO PRODUTO PAR ADIÇÃO AO CARRINHO
+    } else {
       const response = yield call(api.get, `/products`);
-      // adicionando a quantidade e formatando o valor do item pelo SAGA e não pelo reducer
       const findProd = response.data.find(prod => prod.code_color === id);
 
       const skusMap = findProd.sizes.map(sizes => ({
@@ -41,19 +35,16 @@ function* addToCart({ id, skuID }) {
         sizes: sizeSelection,
         amount: 1,
       };
-      // redirecionando para o carrinho
+
       history.push('/cart');
-      // chamando a action que adiciona o produto ao carrinho
+
       yield put(addToCartSuccess(data));
     }
-  }
-  // caso não exista, adiciona um novo item
-  else {
-    // CHAMANDO A API PARA PEGAR OS DADOS DO PRODUTO PAR ADIÇÃO AO CARRINHO
+  } else {
     const response = yield call(api.get, `/products`);
-    // adicionando a quantidade e formatando o valor do item pelo SAGA e não pelo reducer
+
     const findProd = response.data.find(prod => prod.code_color === id);
-    // encontrando a SKU
+
     const skusMap = findProd.sizes.map(sizes => ({
       ...sizes,
     }));
@@ -65,14 +56,13 @@ function* addToCart({ id, skuID }) {
       sizes: sizeSelection,
       amount: 1,
     };
-    // redirecionando para o carrinho
+
     history.push('/cart');
-    // chamando a action que adiciona o produto ao carrinho
+
     yield put(addToCartSuccess(data));
   }
 }
 
-// VALIDA E ALTERA A QUANTIDADE DENTRO DO CARRINHO DE COMPRAS
 function* updateAmount({ id, amount }) {
   if (amount <= 0) return;
   yield put(updateAmountSuccess(id, amount));
