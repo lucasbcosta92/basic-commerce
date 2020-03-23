@@ -48,7 +48,9 @@ export default function Search({ match }) {
                 ) : (
                   <img src={indisponivel} alt={product.name} />
                 )}
-                <strong>{product.name}</strong>
+                <div>
+                  <strong>{product.name}</strong>
+                </div>
                 {product.actual_price !== product.regular_price ? (
                   <>
                     <div className="discount_percentage">
